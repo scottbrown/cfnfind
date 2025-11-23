@@ -1,4 +1,4 @@
-package gitgrab
+package cfnfind
 
 import (
   "fmt"
