@@ -1,0 +1,60 @@
+version: '3'
+
+vars:
+  bin_name: cfnfind
+  pkg: github.com/scottbrown/{{ .bin_name }}
+  pwd:
+    sh: pwd
+  build_dir: "{{ .pwd }}/.build"
+  test_dir: "{{ .pwd }}/.test"
+
+tasks:
+  build:
+    desc: Build the cfnfind binary
+    cmds:
+      - go build -o {{ .build_dir }}/{{ .bin_name }} {{ .pkg }}/cmd/{{ .bin_name }}
+
+  test:
+    desc: Run unit tests
+    cmds:
+      - mkdir -p {{ .test_dir }}
+      - go test -v -race -coverprofile={{ .test_dir }}/coverage.out ./...
+
+  coverage:
+    desc: Display test coverage
+    deps: [test]
+    cmds:
+      - go tool cover -func={{ .test_dir }}/coverage.out
+
+  clean:
+    desc: Clean build artifacts
+    cmds:
+      - rm -rf {{ .build_dir }}
+      - rm -rf {{ .test_dir }}
+
+  install:
+    desc: Install the binary to $GOPATH/bin
+    cmds:
+      - go install {{ .pkg }}/cmd/{{ .bin_name }}
+
+  fmt:
+    desc: Format Go code
+    cmds:
+      - go fmt ./...
+
+  vet:
+    desc: Run go vet
+    cmds:
+      - go vet ./...
+
+  lint:
+    desc: Run all checks (fmt, vet, test)
+    cmds:
+      - task: fmt
+      - task: vet
+      - task: test
+
+  default:
+    desc: Build the project
+    cmds:
+      - task: build
