@@ -86,3 +86,10 @@ When adding documentation, place it in the appropriate Diátaxis category.
 - Uses AWS SDK v2 for Go
 - CLI built with `github.com/spf13/cobra`
 - All region searching is concurrent by default for performance
+
+## GitHub Actions
+
+- Every action used in `.github/workflows/` is pinned in `.github/workflows/actions.lock` via the `github/gh-actions-lock` gh extension
+- After adding a workflow or changing any `uses:` line, run `gh actions-lock` and commit the updated lockfile
+- `uses:` refs must be full semver tags (e.g. `actions/checkout@v7.0.1`), not major-version splats
+- The `Verify Actions Lockfile` workflow runs `gh actions-lock --verify` on every pull request
