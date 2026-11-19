@@ -22,7 +22,7 @@ workflows:
         - 'actions/checkout@v7.0.1'
         - 'actions/upload-artifact@v7.0.2'
         - 'anchore/sbom-action@v0.24.0'
-        - 'anchore/scan-action@v7.4.0'
+        - 'anchore/scan-action@v7.4.2'
         - 'github/codeql-action@v4.39.3'
     '.github/workflows/verify-lockfile.yaml':
         - 'actions/checkout@v7.0.1'
@@ -47,9 +47,9 @@ dependencies:
         commit: 'sha1-e22c389904149dbc22b58101806040fa8d37a610'
         owner_id: 16208487
         repo_id: 399925381
-    'anchore/scan-action@v7.4.0':
-        ref: 'v7.4.0'
-        commit: 'sha1-e1165082ffb1fe366ebaf02d8526e7c4989ea9d2'
+    'anchore/scan-action@v7.4.2':
+        ref: 'v7.4.2'
+        commit: 'sha1-27805bf3b4e84b4a5c980df22ed233c00390a439'
         owner_id: 16208487
         repo_id: 212692077
     'arduino/setup-task@v3.0.0':
