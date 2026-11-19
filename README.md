@@ -21,7 +21,7 @@ task build
 
 ## Prerequisites
 
-- Go 1.21 or later
+- Go 1.27 or later
 - AWS credentials configured (via `~/.aws/credentials` or environment variables)
 - Appropriate IAM permissions to list CloudFormation stacks
 
